@@ -12,7 +12,7 @@ const carSchema = new Schema<CarDocument>({
   buyValue: Number,
   doorsQty: Number,
   seatsQty: Number,
-});
+}, { versionKey: false });
 
 class CarModel extends GenericModel<Car> {
   constructor(model = createModel('Cars', carSchema)) {
