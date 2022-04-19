@@ -13,6 +13,7 @@ class Routers<T> {
     route: string = controller.route,
   ) {
     this.router.get(route, controller.read);
+    this.router.post(route, controller.create);
   }
 }
 
