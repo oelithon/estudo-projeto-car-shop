@@ -3,7 +3,7 @@ import GenericService, { ServiceError } from './GenericService';
 import CarModel from '../models/CarModel';
 
 class CarService extends GenericService<Car> {
-  constructor(model = new CarModel()) {
+  constructor(public model = new CarModel()) {
     super(model);
   }
 
