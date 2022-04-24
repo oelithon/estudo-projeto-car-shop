@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import sinon from 'sinon';
-import mongoose, { Types } from 'mongoose';
 import CarModel from '../../../models/CarModel';
 import CarService from '../../../services/CarService';
 
@@ -25,7 +24,7 @@ describe("Testes na camada service rota '/cars'", () => {
 
     const carService = new CarService(carModel);
 
-    it('Testa se é criado um novo carro com sucesso', async () => {
+    it('Na camada service, testa se é criado um novo carro', async () => {
       const newCar = {
         _id: "4edd40c86762e0fb12000003",
         model: "Ferrari Maranello",
