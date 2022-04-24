@@ -1,13 +1,14 @@
 import { expect } from 'chai';
-import mongoose, { Types } from 'mongoose';
-import CarService from '../../../services/CarService';
 import sinon from 'sinon';
+import mongoose, { Types } from 'mongoose';
+import CarModel from '../../../models/CarModel';
+import CarService from '../../../services/CarService';
 
-describe("Testes no CarModel", () => {
-  let carService = new CarService();
+describe("Testes na camada service rota '/cars'", () => {
+  let carModel = new CarModel();
 
-  before(() => {
-    sinon.stub(carService.model, 'create').resolves(
+  describe("testa o metodo create de CarService", () => {
+    before(() => sinon.stub(carModel, 'create').resolves(
       {
         model: "Ferrari Maranello",
         year: 1963,
@@ -16,15 +17,27 @@ describe("Testes no CarModel", () => {
         seatsQty: 2,
         doorsQty: 2
       }
-    )
-  });
+    ));
 
-  after(() => {
-    (carService.create as sinon.SinonStub).restore();
-  });
+    after(() => {
+      (carModel.create as sinon.SinonStub).restore();
+    });
 
-  it('Testa se é criado um novo carro com sucesso', async () => {
-    const car = await carService.create;
-    expect(car).to.be.an('object');
+    const carService = new CarService(carModel);
+
+    it('Testa se é criado um novo carro com sucesso', async () => {
+      const newCar = {
+        _id: "4edd40c86762e0fb12000003",
+        model: "Ferrari Maranello",
+        year: 1963,
+        color: "red",
+        buyValue: 3500000,
+        seatsQty: 2,
+        doorsQty: 2
+      }
+
+      const car = await carService.create(newCar);
+      expect(car).to.be.an('object');
+    });
   });
 });

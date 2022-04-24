@@ -15,7 +15,7 @@ const carSchema = new Schema<CarDocument>({
 }, { versionKey: false });
 
 class CarModel extends GenericModel<Car> {
-  constructor(model = createModel('Cars', carSchema)) {
+  constructor(public model = createModel('Cars', carSchema)) {
     super(model);
   }
 }
