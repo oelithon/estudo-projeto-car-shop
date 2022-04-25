@@ -34,7 +34,7 @@ abstract class Controller<T> {
   ): Promise<typeof res> => {
     try {
       const cars = await this.service.read();
-      return res.status(201).json(cars);
+      return cars ? res.status(200).json(cars) : res.json([]);
     } catch (error) {
       return res.status(400);
     }
